@@ -4,7 +4,34 @@
 @import 'global';
 @import 'libs';
 
+.header {
+  padding: 40px 0;
+  &__inner {
+    display: flex;
+    justify-content: space-between
+  }
+}
 
+.logo {
+
+  &__img {}
+}
+
+.menu {
+
+  &__list {}
+
+  &__item {}
+
+  &__list-link {}
+}
+
+.user-nav {
+
+  &__link {}
+
+  &__num {}
+}
 
 
 
