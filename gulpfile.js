@@ -41,6 +41,7 @@ function images() { // сжатие картинок
 function scripts() { // сжатие JS файлов и  подключение JS файлов
   return src([
     'node_modules/jquery/dist/jquery.js', // подключен jquery (можно убрать если jquery не нужен)
+    'node_modules/slick-carousel/slick/slick.js',
     'app/js/main.js' // подключен main.js
   ])
     .pipe(concat('main.min.js'))
