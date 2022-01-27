@@ -42,6 +42,7 @@ function scripts() { // сжатие JS файлов и  подключение 
   return src([
     'node_modules/jquery/dist/jquery.js', // подключен jquery (можно убрать если jquery не нужен)
     'node_modules/slick-carousel/slick/slick.js',
+    'node_modules/@fancyapps/fancybox/dist/jquery.fancybox.js',
     'app/js/main.js' // подключен main.js
   ])
     .pipe(concat('main.min.js'))
