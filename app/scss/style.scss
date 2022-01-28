@@ -325,6 +325,137 @@
   }
 }
 
+.product {
+  padding-top: 105px;
+  padding-bottom: 120px;
+  text-align: center;
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 45px 30px;
+  }
+
+  &__link {
+    display: inline-block;
+    text-transform: uppercase;
+    color: $title-color;
+    border: 1px solid $accent-color;
+    padding: 14px 27px;
+    margin-top: 55px;
+  }
+}
+
+.product-item {
+  max-width: 370px;
+  text-align: center;
+  &__img-box {
+    position: relative;
+    height: 370px;
+    overflow: hidden;
+    margin-bottom: 25px;
+  }
+
+  &__images {
+    object-fit: cover;
+  }
+
+  &__link-box {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 50px;
+    background-color: #fff;
+    width: 220px;
+    height: 50px;
+    margin: 0 auto;
+    box-shadow: 0px 5px 30px 0px rgba(152, 152, 152, 0.2);
+    border-radius: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    transform: translateY(300%);
+    transition: all 0.5s;
+  }
+
+  &__link--line::before,
+  &__link--line::after {
+    content: '';
+    position: absolute;
+    height: 30px;
+    width: 1px;
+    background-color: #ececec;
+    top: 10px;
+  }
+
+  &__link--line::before{
+    left: 70px;
+  }
+
+  &__link--line::after{
+    right: 70px;
+  }
+
+  &__link {
+    display: inherit;
+    path{
+      transition: all 0.5s;
+    }
+  }
+
+  &__link:hover {
+    path{
+      fill: $accent-color;
+    }
+  }
+  &:hover{
+    .product-item__link-box {
+      transform: translateY(0);
+    }
+  }
+
+  &__title {
+    color: $title-color;
+    font-size: 22px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+  }
+
+  &__price {
+    display: flex;
+    justify-content: center;
+    @extend %roboto-700;
+  }
+
+  &__new-prise {
+    padding: 0 12px;
+    color: $title-color;
+  }
+
+  &__old-prise {
+    padding: 0 12px;
+    text-decoration: line-through;
+  }
+}
+
+.product-item--sale{
+  .product-item__img-box::before{
+      content: 'SALE';
+      @extend %btn;
+      position: absolute;
+      top: 25px;
+      left: 25px;
+      line-height: 1;
+  }
+}
+
+.star {
+  margin: 0 auto;
+}
+
+
+
+
+
 .footer {
   background-color: $bg;
 }
