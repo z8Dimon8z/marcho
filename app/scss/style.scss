@@ -75,6 +75,66 @@
   }
 }
 
+.top {
+
+  &__container {
+    max-width: 1700px;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+    padding-top: 120px;
+    padding-bottom: 130px;
+    text-align: center;
+  }
+}
+
+.breadcrums {
+  display: inline-flex;
+  justify-content: center;
+  padding-left: 25px;
+  position: relative;
+  &:before{
+    content: '';
+    position: absolute;
+    background-image: url('../images/icons/home-icon.svg');
+    width: 16px;
+    height: 16px;
+    left: 0;
+    top: 4px;
+  }
+  &__list {
+    display: flex;
+  }
+
+  &__item {
+    color: #727272;
+    position: relative;
+    padding-right: 40px;
+    &:before {
+      content: '';
+      position: absolute;
+      background-image: url('../images/icons/angle-right.svg');
+      width: 9px;
+      height: 10px;
+      right: 15px;
+      top: 9px;
+    }
+    &:last-child{
+      color: $accent-color;
+      padding-right: 0;
+      &::before{
+        display: none;
+      }
+    }
+  }
+
+  &__link {
+    color: inherit;
+  }
+}
+
+
 .top-slider {
   background-color: $bg;
   padding-top: 65px;
@@ -769,6 +829,63 @@
     }
   }
 }
+
+// Страница login
+
+.modal {
+  padding-top: 100px;
+  max-width: 570px;
+  margin: 0 auto;
+  margin-bottom: 115px;
+  &__links {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  &__link {
+    color: #909090;
+    font-size: 22px;
+    @extend %roboto-400;
+    text-transform: uppercase;
+    margin: 0 30px;
+  }
+
+  &__link--active {
+    color: $accent-color;
+  }
+
+  &__label {
+    margin-bottom: 30px;
+    display: block;
+  }
+
+  &__input {
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: $bg;
+    margin-top: 4px;
+    height: 60px;
+    padding: 0 15px;
+  }
+
+  &__btn {
+    display: block;
+    background-color: $title-color;
+    color: #fff;
+    text-transform: uppercase;
+    @extend %roboto-400;
+    padding: 14px 0;
+    width: 100%;
+  }
+
+  &__error {
+    margin-top: 12px;
+    color: $accent-color;
+    display: inline-block;
+  }
+}
+
 
 
 
