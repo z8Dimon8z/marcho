@@ -1142,6 +1142,34 @@
   }
 }
 
+.shop-content {
+  width: 100%;
+  &__filter {
+    border: 1px solid #ececec;
+    padding: 20px 25px 20px 30px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__filter-buttons{
+    display: flex;
+    align-items: center;
+  }
+  &__filter-btn{
+    margin-left: 15px;
+    line-height: 0;
+    &.shop-content__filter-btn--active{
+      path{
+        fill: $accent-color;
+      }
+    }
+  }
+  
+
+  &__inner {}
+}
 
 
 
