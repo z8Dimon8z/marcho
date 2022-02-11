@@ -416,7 +416,9 @@
 .product-item {
   max-width: 370px;
   text-align: center;
-
+  &.product-item--list{
+    max-width: 100%;
+  }
   &__img-box {
     position: relative;
     height: 370px;
@@ -1169,6 +1171,35 @@
   
 
   &__inner {}
+}
+
+.jq-selectbox__select {
+  margin-left: 30px;
+  height: 32px;
+  padding: 0 30px 0 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  text-shadow: none;
+  color: $default-color;
+  @extend %quicksand-500;
+  &:hover{
+    background: transparent;
+  }
+}
+
+.jq-selectbox__trigger{
+  border-left: none;
+}
+
+.jq-selectbox__trigger-arrow{
+  position: absolute;
+  background-image: url('../images/icons/angle-down.svg');
+  top: 14px;
+  right: 14px;
+  width: 10px;
+  height: 5px;
+  border: none;
 }
 
 
