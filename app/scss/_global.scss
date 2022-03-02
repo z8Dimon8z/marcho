@@ -37,5 +37,52 @@ body{
   margin-bottom: 55px;
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding: 30px 0;
+  &__arrows {
+    text-transform: uppercase;
+    position: relative;
+    &::before{
+      content: '';
+      position: absolute;
+      width: 5px;
+      height: 10px;
+      top: 8px;
+    }
+  }
+
+  &__prew {
+    padding-left: 15px;
+    &::before{
+      background-image: url('../images/icons/angle_left.svg');
+      left: 0;
+    }
+  }
+
+  &__list {
+    display: flex;
+    padding: 0 35px;
+  }
+
+  &__item {
+    padding: 0 15px;
+  }
+
+  &__link--active {
+    color: $accent-color;
+  }
+
+  &__next {
+    padding-right: 15px;
+    &::before {
+      background-image: url('../images/icons/angle_right.svg');
+      right: 0;
+    }
+  }
+}
+
+
 
 
