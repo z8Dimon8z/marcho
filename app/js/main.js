@@ -1,5 +1,20 @@
 $(function () {
 
+  $('.product-slide__trumb').slick({
+    asNavFor: '.product-slide__big',
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    focusOnSelect: true,
+    vertical: true,
+    draggable: false,
+  });
+  $('.product-slide__big').slick({
+    asNavFor: '.product-slide__trumb',
+    draggable: false,
+    arrows: false,
+  });
+
+
   $('.shop-content__filter-btn').on('click', function () {
     $('.shop-content__filter-btn').removeClass('shop-content__filter-btn--active');
     $(this).addClass('shop-content__filter-btn--active');
