@@ -1392,9 +1392,67 @@
 
   &__info {}
 
-  &__num {}
+  &__num {
+    
+  }
 
-  &__btn {}
+  &__btn {
+    @extend %btn;
+    margin-left: 15px;
+  }
+  .jq-number{
+    padding: 0;
+  }
+  .jq-number__field{
+    border: 2px solid #ececec;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .jq-number__field input{
+    color: $title-color;
+    font-size: 16px;
+    @extend %quicksand-500;
+    text-align: center;
+    padding: 14px 10px;
+  }
+  .jq-number__spin{
+      position: absolute;
+      top: 65%;
+      transform: translateY(-65%);
+      right: 0;
+      width: 32px;
+      height: 15px;
+      border: none;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      text-shadow: none;
+      cursor: pointer;
+  }
+  .jq-number__spin::after{
+    top: 0;
+    left: 0;
+    background-color: $title-color;
+    border: none;
+    width: 15px;
+    height: 2px;
+  }
+
+
+  .jq-number__spin.plus::before{
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 15px;
+    background-color: $title-color;
+    top: -6px;
+    left: 6px;
+
+  }
+  .jq-number__spin.minus{
+    right: auto;
+    left: 15px;
+  }
 }
 
 .product-slide {
@@ -1451,13 +1509,32 @@
 
 .product-info {
 
-  &__list {}
+  &__list {
+    margin-bottom: 30px;
+  }
 
-  &__item {}
+  &__item {
+    margin-bottom: 5px;
+    display: flex;
+  }
 
-  &__title {}
+  &__title {
+    min-width: 100px;
+    color: $title-color;
+  }
 
-  &__text {}
+  &__text {
+    
+  }
+  &__link{
+    fill: $default-color;
+    &:hover{
+      fill: $accent-color;
+    }
+    & +.product-info__link{
+      margin-left: 15px;
+    }
+  }
 }
 
 .footer-top {
