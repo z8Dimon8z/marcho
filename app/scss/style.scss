@@ -369,8 +369,6 @@
     background-position: top center;
   }
 
-  &__play {}
-
   &__content {
     max-width: 570px;
     width: 100%;
@@ -810,8 +808,6 @@
   border-bottom: 1px solid #ececec;
   display: flex;
 
-  &__item {}
-
   &__contacts {
     width: 250px;
     margin-right: 50px;
@@ -1000,7 +996,6 @@
     margin-right: 30px;
   }
 
-  &__content {}
 }
 
 .filter {
@@ -1095,8 +1090,6 @@
 }
 
 .filter-color {
-
-  &__form {}
 
   &__label {
     padding-bottom: 20px;
@@ -1656,6 +1649,7 @@
       content: '';
       position: absolute;
       left: 0;
+      top: 7px;
       width: 15px;
       height: 13px;
       background-image: url('../images/icons/reply.svg');
