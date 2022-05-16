@@ -1759,6 +1759,129 @@
   }
 }
 
+// страница blog
+
+.blog-page{
+  padding-top: 120px;
+  padding-bottom: 60px;
+  &__item--slider{
+    .blog-page__item-box{
+      margin-top: -8px;
+    }
+  }
+  &__slider{
+    position: relative;
+    .slick-next,
+    .slick-prev{
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 5;
+      width: 40px;
+      height: 40px;
+      background-color: $accent-color;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0px 7px 20px 0px rgba(168, 168, 168, 0.3);
+      path{
+        fill: white;
+      }
+    }
+    .slick-next{
+      right: 40px;
+    }
+    .slick-prev{
+      left: 40px; 
+    }
+    .slick-disabled{
+      background-color: white;
+      path{
+        fill: $accent-color;
+      }
+    }
+  }
+
+  &__inner{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__content{
+    width: 770px;
+    margin-right: 30px;
+  }
+
+  &__aside{
+    width: 370px;
+  }
+
+  &__item{
+    margin-bottom: 60px;
+  }
+
+  &__item--no-image{
+    border-top: 1px solid #ececec;
+    transition: all 0.5s;
+    &:hover{
+      box-shadow: 0px 20px 60px 0px rgba(202, 202, 202, 0.35);
+    }
+  }
+
+  &__item-link{
+    display: block;
+    position: relative;
+  }
+
+  &__item-link--img{
+    display: block;
+    position: relative;
+    &::before{
+      content: '';
+      width: 130px;
+      height: 130px;
+      background-image: url('../images/icons/play-btn.svg');
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &__img{
+    max-width: 770px;
+    height: 450px;
+    object-fit: cover;
+    display: block;
+  }
+
+  &__item-box{
+    border: 1px solid #ececec;
+    border-top: none;
+    padding: 40px;
+  }
+
+  &__item-title{
+    color: $title-color;
+    @extend %roboto-700;
+    font-size: 22px;
+    margin-bottom: 20px;
+    transition: all 0.5s;
+    &:hover{
+      color: $accent-color;
+    }
+  }
+  
+  .blog-box{
+    justify-content: flex-start;
+    &__author{
+      margin-right: 30px;
+    }
+  }
+}
+
+
 
 
 
