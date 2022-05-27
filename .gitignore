@@ -1,12 +1,11 @@
 .DS_Store
 .idea/
 .idea/*
-.AppleDouble
-.LSOverride
 .vscode
 *.sublime*
+npm-debug.*
+
 dist/
 node_modules/
-npm-debug.*
 package-lock.json
 app/css/*

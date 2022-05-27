@@ -1,15 +1,15 @@
-html {
+html{
   box-sizing: border-box;
 }
 
 *,
 *::after,
-*::before {
+*::before{
   box-sizing: inherit;
 }
 
-ul,
-ol {
+ul[class],
+ol[class] {
   padding: 0;
 }
 
@@ -32,9 +32,9 @@ dd {
   margin: 0;
 }
 
-ul {
+ul[class] {
   list-style: none;
-}
+} 
 
 img {
   max-width: 100%;
@@ -48,15 +48,6 @@ select {
   font: inherit;
 }
 
-a {
+a{
   text-decoration: none;
-  color: inherit;
-}
-
-button {
-  padding: 0;
-  font-family: inherit;
-  border-style: none;
-  background-color: transparent;
-  cursor: pointer;
 }

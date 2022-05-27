@@ -1,0 +1,66 @@
+.modal{
+  max-width: 570px;
+  margin: 0 auto 115px;
+  padding-top: 100px;
+
+  &__links{
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  &__link{
+    @extend %roboto-400;
+    font-size: 22px;
+    color: #909090;
+    text-transform: uppercase;
+    margin: 0 30px;
+
+    &--active{
+      color: $accent;
+      @extend %roboto-700;
+    }
+  }
+
+  &__label{
+    margin-bottom: 30px;
+    display: block;
+  }
+
+  &__input{
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: $bg;
+    height: 60px;
+    margin-top: 4px;
+    padding: 0 15px;
+  }
+
+  &__btn{
+    background-color: $title;
+    color: #fff;
+    text-transform: uppercase;
+    @extend %roboto-400;
+    padding: 14px 0;
+    border: none;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  &__error{
+    margin-top: 12px;
+    color: $accent;
+    display: inline-block;
+  }
+
+  &__text{
+    margin-bottom: 25px;
+  }
+}
+
+@media (max-width: 375px){
+  .modal__link{
+    margin: 0 20px;
+  }
+}
