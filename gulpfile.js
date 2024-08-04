@@ -1,92 +1,113 @@
-const { src, dest, watch, parallel, series }  = require('gulp');
+const { src, dest, watch, parallel, series} = require('gulp');
 
-const scss = require('gulp-sass')(require('sass')); // работа c sass
-const concat        = require('gulp-concat'); // Обяденение файлов
-const browserSync   = require('browser-sync').create(); // сервер
-const uglify        = require('gulp-uglify-es').default; // сжатие js
-const autoprefixer  = require('gulp-autoprefixer'); // префиксы в css
-const imagemin      = require('gulp-imagemin'); // сжатие картинок
-const del           = require('del'); // удаление из файлов из папки dist перед билдом (финалом)
+const scss                = require('gulp-sass')(require('sass'));
+const concat              = require('gulp-concat');
+const autoprefixer        = require('gulp-autoprefixer');
+const uglify              = require('gulp-uglify');
+const imagemin            = require('gulp-imagemin');
+const rename              = require('gulp-rename');
+const nunjucksrender      = require('gulp-nunjucks-render');
+const del                 = require('del');
+const browserSync         = require('browser-sync').create();
 
-function browsersync() { // автоматическая обновление страницы при изменении  в проекте
-  browserSync.init({
-    server : {
-      baseDir: 'app/'
-    }
-  });
-}
 
-function cleanDist() { // удаление из файлов из папки dist перед билдом (финалом)
-  return del('dist')
-}
-
-function images() { // сжатие картинок
-  return src('app/images/**/*.*')
-    .pipe(imagemin(
-      [
-        imagemin.gifsicle({ interlaced: true }),
-        imagemin.mozjpeg({ quality: 75, progressive: true }),
-        imagemin.optipng({ optimizationLevel: 5 }),
-        imagemin.svgo({
-          plugins: [
-            { removeViewBox: true },
-            { cleanupIDs: false }
-          ]
-        })
-      ]
-    ))
-    .pipe(dest('dist/images'))
-}
-
-function scripts() { // сжатие JS файлов и  подключение JS файлов
-  return src([
-    'node_modules/jquery/dist/jquery.js', // подключен jquery (можно убрать если jquery не нужен)
-    'app/js/main.js' // подключен main.js
-  ])
-    .pipe(concat('main.min.js'))
-    .pipe(uglify())
-    .pipe(dest('app/js'))
+function nunjucks(){
+  return src('app/html/*.njk')
+    .pipe(nunjucksrender())
+    .pipe(dest('app'))
     .pipe(browserSync.stream())
 }
 
-
-function styles() { // функция конвертации sass
-  return src('app/scss/style.scss')
-      .pipe(scss({outputStyle: 'compressed'})) // сжатие файла css
-      .pipe(concat('style.min.css')) // обяденение файлов
-      .pipe(autoprefixer({ // для совместимости со старыми браузерами
-        overrideBrowserslist: ['last 10 version'], // десять последних версий браузера
-        grid: true // использование гридов
-      }))
-      .pipe(dest('app/css'))
-      .pipe(browserSync.stream())
+//конвертируем и сжимаем файлы из папки scss в папку css
+function styles () {
+  return src('app/scss/*.scss')
+    .pipe(scss({outputStyle: 'compressed'}))
+    // .pipe(concat())
+    .pipe(rename({
+      suffix : '.min',
+    }))
+    .pipe(autoprefixer({
+      overrideBrowserslist: ['last 10 versions'],
+      grid: true
+    }))
+    .pipe(dest('app/css'))
+    .pipe(browserSync.stream())
 }
 
-function build() { // финальная сборка проекта
+//компиляция скриптов js
+function scripts () {
   return src([
-    'app/css/style.min.css',
-    'app/fonts/**/*',
-    'app/js/main.min.js',
-    'app/**/*.html'
-  ], {base: 'app'})
-    .pipe(dest('dist'))
+    'node_modules/jquery/dist/jquery.js',  //плагины jqery
+    'node_modules/slick-carousel/slick/slick.js',  //плагины slick
+    'node_modules/rateyo/src/jquery.rateyo.js',  //плагины rateyo
+    'node_modules/@fancyapps/fancybox/dist/jquery.fancybox.js',  //плагины fancybox
+    'node_modules/ion-rangeslider/js/ion.rangeSlider.js',  //плагины Range Slider
+    'node_modules/jquery-form-styler/dist/jquery.formstyler.js',  //плагины form stiler
+    'app/js/main.js'
+  ])
+  .pipe(concat('main.min.js'))
+  .pipe(uglify())
+  .pipe(dest('app/js'))
+  .pipe(browserSync.stream())
 }
 
-function watching() { // Слежка за изменниями в проекте
-  watch(['app/scss/**/*.scss'], styles);
-  watch(['app/js/**/*.js', '!app/js/main.min.js'], scripts);
-  watch(['app/*.html']).on('change', browserSync.reload);
+//сжатие изображений
+function images () {
+  return src('app/images/**/*.*')
+    .pipe(imagemin([
+      imagemin.gifsicle({interlaced: true}),
+	    imagemin.mozjpeg({quality: 75, progressive: true}),
+	    imagemin.optipng({optimizationLevel: 5}),
+	    imagemin.svgo({
+		    plugins: [
+			    {removeViewBox: true},
+		    	{cleanupIDs: false}
+		]
+	})
+    ]))
+    .pipe(dest('dist/images'))
 }
+
+//сервер
+function browsersync() {
+  browserSync.init({
+    server: {
+        baseDir: "app/"
+    },
+    notify: false
+  });
+}
+
+//слежение за проектом
+function watching () {
+  watch(['app/**/*.scss'], styles);
+  watch(['app/html/*.njk'], nunjucks);
+  watch(['app/js/**/*.js', '!app/js/main.min.js'], scripts);
+  watch(['app/**/*.html']).on('change', browserSync.reload);
+}
+
+function cleanDist () {
+  return del('dist')
+}
+
+function build () {
+  return src([
+    'app/**/*.html',
+    'app/css/style.min.css',
+    'app/js/main.min.js',
+  ], {base: 'app'})
+  .pipe(dest('dist'))
+}
+
 
 exports.styles = styles;
-exports.watching = watching;
-exports.browsersync = browsersync;
 exports.scripts = scripts;
+exports.browsersync = browsersync;
+exports.watching = watching;
 exports.images = images;
 exports.cleanDist = cleanDist;
+exports.nunjucks = nunjucks;
 
 
-exports.build = series(cleanDist, images, build); // последовательность выполнения команд перед bildom (финалом)
-exports.default = parallel(styles ,scripts ,browsersync, watching); // паралельное выполнение команд и пакетов gulpa
-
-
+exports.build = series(cleanDist, images, build);
+exports.default = parallel(nunjucks, styles, scripts, browsersync, watching);
